@@ -24,10 +24,10 @@ DATA_PATH = os.path.join(BASE_PATH, "initial_data.csv")
 CV_RESULTS_PATH = os.path.join(BASE_PATH, "cv_res.json")
 PARAMS_PATH = os.path.join(BASE_PATH, "params.yaml")
 
-# 0. Указываем MLflow сервер
-mlflow.set_tracking_uri("http://localhost:5000")  # если сервер локальный
+#  Указываем MLflow сервер
+mlflow.set_tracking_uri("http://localhost:5000")  
 
-# 1. Загружаем модель, данные и метрики
+#  Загружаем модель, данные и метрики
 model = joblib.load(MODEL_PATH)
 data = pd.read_csv(DATA_PATH)
 with open(CV_RESULTS_PATH, "r") as f:
@@ -36,14 +36,14 @@ with open(CV_RESULTS_PATH, "r") as f:
 with open(PARAMS_PATH, "r") as f:
     params = yaml.safe_load(f)
 
-# 2. Определяем X и y для сигнатуры
+# Определяем X и y для сигнатуры
 target_col = params.get("target_col", "price")  # берём target из params.yaml
 X = data.drop(columns=[target_col])
 y = data[target_col]
 
 signature = infer_signature(X, model.predict(X))
 
-# 3. Логируем в MLflow на сервере
+#  Логируем в MLflow на сервере
 mlflow.set_experiment("baseline_model_experiment")
 
 with mlflow.start_run(run_name="baseline_model_run"):
