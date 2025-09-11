@@ -16,6 +16,7 @@ pip install -r requirements.txt
 
 - Инструкция по поднятию Mlflow: запускается командой sh run_mlflow.sh
 - id эксперимента с базовой моделью в MLflow: 7
+- запуск baseline_model_run
 - название эксперимента с базовой моделью в Mlflow: baseline_model_experiment
 - Залогирована базовая модель, метрики, initial_data, параметры из файла params.yaml
 
@@ -23,6 +24,7 @@ pip install -r requirements.txt
 Уже на этом этапе добавила дополнительные колонки (округ, район, удаление от центра Москвы, десятилетие построения здания, находится и квартира на первом этаже, находится ли квартира на последнем этаже, отноешнеи жилой площади к общей, плотность квартир на этаже), так как это нужно для понимания закономерностей.
 - id эксперимента с EDA в MLflow: 9
 - название эксперимента в Mlflow: EDA_artifacts
+- запуск EDA_logging
 - залогированы графики, данные, маркдаун с выводами и ноутбук
 
 ЭТАП 3:
@@ -30,8 +32,10 @@ pip install -r requirements.txt
 
 - id эксперимента с генерацией в MLflow: 10
 - название эксперимента в Mlflow: feature_generation
+- запуск feature_generation_run
 - id эксперимента с preprocessing_pipeline в MLflow: 24
 - название эксперимента с preprocessing_pipeline в Mlflow: feature_generation
+- запуск pipeline_preprocessing
 - залогировала параметры, метрики, данные и ноутбук
 - название зарегистрированной модели: FeatureGen_CatBoost_Model
 
@@ -40,6 +44,7 @@ pip install -r requirements.txt
 
 - id эксперимента с отбором признаков в MLflow: 11
 - название эксперимента в Mlflow: feature_selection
+- запуск feature_selection_numeric
 - залогировала параметры, метрики, данные и ноутбук
 - название зарегистрированной модели: FeatureSelectionCatBoostCombined
 
@@ -53,6 +58,9 @@ pip install -r requirements.txt
 - название эксперимента с отбором гиперпараметров через RandomizedSearchCV в Mlflow: catboost_random_search
 - название эксперимента с обучением финальной модели Mlflow: catboost_best_model
 - залогировала параметры, метрики, данные и ноутбук
+- запуск CatBoost_Optuna
+- запуск catboost_random_search_metrics
+- запуск CatBoost_Final_Model
 - название зарегистрированной финальной модели: catboost_best_model
 
 
